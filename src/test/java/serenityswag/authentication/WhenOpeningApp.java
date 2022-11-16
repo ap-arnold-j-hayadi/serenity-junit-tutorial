@@ -7,14 +7,12 @@ import net.thucydides.core.annotations.Steps;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
-import io.appium.java_client.AppiumDriver;
-import serenityswag.inventory.InventoryPage;
+import serenityswag.inventory.InputPinPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static serenityswag.authentication.User.STANDARD_USER;
 
 @RunWith(SerenityRunner.class)
-public class WhenLoggingOn {
+public class WhenOpeningApp {
 
     @Managed(driver = "Appium")
     WebDriver driver;
@@ -22,16 +20,17 @@ public class WhenLoggingOn {
     @Steps
     LoginActions login;
 
-    InventoryPage inventoryPage;
+    InputPinPage inputPinPage;
 
     @Test
-    public void usersCanLogOnViaTheHomePage() {
+    public void usersCanAccessInputPin() {
         System.out.println("Starting. . . . . . .");
+        login.goToInputPinPage();
 //        login.as(STANDARD_USER);
 //
-//        // Should see product catalog
-//        Serenity.reportThat("The inventory page should be displayed with the correct title",
-//                () -> assertThat(inventoryPage.getHeading()).isEqualToIgnoringCase("Products")
-//        );
+//        // Should see p   roduct catalog
+        Serenity.reportThat("The inventory page should be displayed with the correct title",
+                () -> assertThat(inputPinPage.getHeading()).isEqualToIgnoringCase("Silakan masukan nomor handphone yang terdaftar")
+        );
     }
 }
